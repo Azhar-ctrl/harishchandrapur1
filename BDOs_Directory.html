@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block Development Officer Directory</title>
+    <!-- Tailwind CSS for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            /* A very pale orange-tinted white for the main background */
+            background-color: #fff8f5; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        /* Custom border adjustments for the card headers to match the orange theme */
+        .card-header-current { background-color: #ea580c; } /* Dark orange */
+        .card-header-former { background-color: #f97316; } /* Standard orange */
+        
+        .card-container {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-bottom-left-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
+        
+        /* 3D edge effect on the left of the cards */
+        .card-current { border-left: 4px solid #c2410c; } /* Deep orange edge for current */
+        .card-former { border-left: 4px solid #d1d5db; }  /* Gray edge for former */
+    body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6; /* Just for contrast against the footer */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Pushes footer to the bottom of the page */
+        main {
+            flex-grow: 1; 
+        }
+
+        /* Footer Container Styling */
+        .site-footer {
+            background-color: #cd5a07; /* Matches the burnt orange in the design */
+            color: #ffffff;
+            width: 100%;
+        }
+
+        /* Top Navigation Section */
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25); /* Subtle dividing line */
+            font-size: 15px;
+        }
+
+        .footer-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .footer-nav .separator {
+            color: #ffffff;
+            font-weight: normal;
+        }
+
+        /* Bottom Information Section */
+        .footer-info {
+            text-align: center;
+            padding: 20px 20px 25px 20px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-info .block-name {
+            font-weight: 700; /* Bold for the block name */
+        }
+</style>
+</head>
+<body>
+
+    <!-- Top Orange Header -->
+    <header class="bg-[#ea580c] text-white py-3 text-center text-sm font-semibold tracking-wide">
+        Block Development Officer Directory
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto px-4 py-6">
+
+        <!-- Search Section -->
+        <div class="flex justify-center mb-8">
+            <div class="flex shadow-sm rounded-md">
+                <input type="text" id="searchInput" placeholder="Search BDO Name" class="border border-gray-300 rounded-l-md px-3 py-1.5 w-64 text-sm focus:outline-none focus:ring-1 focus:ring-orange-500">
+                <button id="searchBtn" class="bg-[#ea580c] text-white px-4 py-1.5 text-sm font-medium border border-[#ea580c] hover:bg-[#c2410c] transition-colors flex items-center gap-2">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <button id="resetBtn" class="bg-[#6c757d] text-white px-4 py-1.5 text-sm font-medium rounded-r-md border border-[#6c757d] hover:bg-gray-600 transition-colors">
+                    Reset
+                </button>
+            </div>
+        </div>
+
+        <!-- BDO Directory Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+
+            <!-- Card 1: Current BDO -->
+            <div class="bg-white card-container card-current flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-current text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-star text-xs"></i> Current BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-900">
+                        <img src="https://ui-avatars.com/api/?background=ea580c&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase">Shri Dhrubashis Samanta - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                05-08-2026 &nbsp;&nbsp;To&nbsp;&nbsp; <span class="text-[#c2410c] font-bold">Present</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Former BDO -->
+            <div class="bg-white card-container card-former flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-former text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-history text-xs"></i> Former BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-400">
+                        <img src="https://ui-avatars.com/api/?background=f97316&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase"> Name - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                31-10-2025 &nbsp;&nbsp;To&nbsp;&nbsp; 05-02-2026
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Former BDO -->
+            <div class="bg-white card-container card-former flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-former text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-history text-xs"></i> Former BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-400">
+                        <img src="https://ui-avatars.com/api/?background=f97316&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase"> Name - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                31-10-2022 &nbsp;&nbsp;To&nbsp;&nbsp; 05-08-2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Former BDO -->
+            <div class="bg-white card-container card-former flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-former text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-history text-xs"></i> Former BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-400">
+                        <img src="https://ui-avatars.com/api/?background=f97316&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase"> Name - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                31-10-2022 &nbsp;&nbsp;To&nbsp;&nbsp; 05-08-2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Card 5: Former BDO (No Image Placeholder) -->
+            <div class="bg-white card-container card-former flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-former text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-history text-xs"></i> Former BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-400">
+                        <img src="https://ui-avatars.com/api/?background=f97316&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase"> Name - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                31-10-2023 &nbsp;&nbsp;To&nbsp;&nbsp; 05-02-2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Former BDO -->
+            <div class="bg-white card-container card-former flex flex-col relative rounded-lg overflow-hidden">
+                <div class="card-header-former text-white text-xs font-semibold px-3 py-2 flex items-center gap-2">
+                    <i class="fas fa-history text-xs"></i> Former BDO
+                </div>
+                <div class="p-5 flex gap-5">
+                    <div class="w-28 h-28 rounded-full border-4 border-gray-100 shadow-sm overflow-hidden flex-shrink-0 bg-orange-400">
+                        <img src="https://ui-avatars.com/api/?background=f97316&color=fff" alt="BDO Profile" class="w-full h-full object-cover bdo-avatar">
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-[#ea580c] font-bold text-base leading-tight uppercase"> Name - W.B.C.S.(Exe.)</h3>
+                        <p class="text-gray-500 text-xs mt-1">Block Development Officer</p>
+                        
+                        <div class="bg-[#fff8f5] rounded p-3 mt-4 border border-orange-100">
+                            <p class="text-xs font-bold text-[#c2410c] flex items-center gap-1.5">
+                                <i class="fas fa-calendar-alt text-[#ea580c]"></i> Tenure
+                            </p>
+                            <p class="text-xs text-gray-700 mt-2 font-medium">
+                                31-10-2022 &nbsp;&nbsp;To&nbsp;&nbsp; 05-08-2025
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // --- 1. Auto-Generate Avatars based on Name ---
+        const cards = document.querySelectorAll('.card-container');
+        
+        cards.forEach(card => {
+            const nameElement = card.querySelector('h3');
+            const imgElement = card.querySelector('img.bdo-avatar'); // Target only avatars
+            
+            if (nameElement && imgElement) {
+                // Get the raw name text
+                let rawName = nameElement.textContent;
+                
+                // Clean the name: Remove "Shri ", and remove the designation after the hyphen
+                let cleanName = rawName.split('-')[0].trim();
+                // Regex removes "Shri " or "Smt " if it exists at the start
+                cleanName = cleanName.replace(/^(Shri\s+|Smt\.?\s+)/i, '').trim();
+                
+                // Update the image URL dynamically
+                let url = new URL(imgElement.src);
+                url.searchParams.set('name', cleanName);
+                imgElement.src = url.toString();
+            }
+        });
+
+        // --- 2. Search Functionality ---
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+
+            cards.forEach(card => {
+                const nameElement = card.querySelector('h3');
+                if (nameElement) {
+                    const name = nameElement.textContent.toLowerCase();
+                    if (name.includes(query)) {
+                        card.style.display = 'flex'; 
+                    } else {
+                        card.style.display = 'none'; 
+                    }
+                }
+            });
+        }
+
+        function resetSearch() {
+            searchInput.value = ''; 
+            cards.forEach(card => {
+                card.style.display = 'flex'; 
+            });
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        resetBtn.addEventListener('click', resetSearch);
+
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    });
+</script>
+  <!-- Footer Implementation -->
+    <footer class="site-footer">
+        <div class="footer-nav">
+            <a href="index.html">🏠 Home</a>
+            <span class="separator">|</span>
+            <a href="location.html">📍 Location Map</a>
+            <span class="separator">|</span>
+            <a href="">Next ➔</a>
+        </div>
+        
+        <div class="footer-info">
+            <div>
+                <span class="block-name">Harishchandrapur-I Development Block</span> | Government of West Bengal
+            </div>
+            <div>
+                &copy; 2026 All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

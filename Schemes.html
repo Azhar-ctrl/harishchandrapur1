@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Government Schemes Directory | Harishchandrapur-I</title>
+<!-- Bootstrap CSS CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome CDN -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+<style>
+    body {    
+        background-color: #f4f7fa; /* Light grayish-blue background */
+        font-family: 'Segoe UI', Arial, sans-serif;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+    
+    .main-content {
+        flex: 1; /* Pushes the footer to the bottom */
+    }
+
+    /* Top Banner Styling */
+    .page-header {    
+        background: linear-gradient(135deg, #d35400, #e67e22);    
+        color: #fff;    
+        padding: 25px 30px;    
+        border-radius: 10px;    
+        margin-top: 25px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(211, 84, 0, 0.15);
+    }
+    .page-header h2 {
+        font-weight: 600;
+        font-size: 1.8rem;
+        margin-bottom: 5px;
+    }
+    .page-header p {
+        margin-bottom: 2px;
+    }
+    .header-icon-bg {
+        position: absolute;
+        right: 30px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 6rem;
+        opacity: 0.3;
+        color: #fff;
+    }
+
+    /* Breadcrumb Styling */
+    .custom-breadcrumb {
+        margin: 15px 0;
+        font-size: 0.95rem;
+    }
+    .custom-breadcrumb a {
+        color: #d35400;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    .custom-breadcrumb .active {
+        color: #6c757d;
+    }
+
+    /* Main Card Styling */
+    .directory-card {    
+        border: none;    
+        border-radius: 8px;    
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        overflow: hidden;
+        margin-bottom: 40px;
+        background-color: #fff;
+    }
+    
+    /* Card Header */
+    .card-header-orange {
+        background-color: #d35400;
+        color: white;
+        padding: 12px 20px;
+        border-bottom: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .card-header-orange h4 {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    /* Search Box */
+    .search-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .search-input {
+        border-radius: 20px;
+        padding: 6px 15px;
+        border: none;
+        font-size: 0.9rem;
+        width: 250px;
+        outline: none;
+    }
+    .search-input::placeholder {
+        color: #888;
+    }
+
+    /* Table Styling */
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        background-color: #e67e22 !important; /* Lighter orange for table header */
+        color: white !important;
+        font-weight: 600;
+        padding: 15px;
+        border: 1px solid #fff; /* White borders between header cells */
+        white-space: nowrap;
+    }
+    .table td {
+        padding: 15px;
+        vertical-align: middle;
+        border-color: #eef0f3;
+        color: #222;
+    }
+    .table tbody tr:hover {
+        background-color: #fcfcfc;
+    }
+    
+    /* Serial Number Circular Badge */
+    .sl-badge {
+        background-color: #e67e22;
+        color: white;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    /* Action Buttons inside Table */
+    .btn-action {
+        width: 35px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background-color: white;
+        transition: all 0.2s;
+        text-decoration: none;
+    }
+    .btn-blue {
+        border: 1px solid #8ab4f8;
+        color: #1a73e8;
+    }
+    .btn-blue:hover { background-color: #e8f0fe; color: #1a73e8; }
+    
+    .btn-green {
+        border: 1px solid #81c995;
+        color: #1e8e3e;
+    }
+    .btn-green:hover { background-color: #e6f4ea; color: #1e8e3e; }
+    
+    .btn-view {
+        background-color: #d35400;
+        color: white;
+        border: none;
+    }
+    .btn-view:hover { background-color: #b34700; color: white;}
+
+    /* Footer Container Styling */
+    .site-footer {
+        background-color: #cd5a07; /* Matches the burnt orange in the design */
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        width: 100%;
+        margin-top: auto;
+    }
+    .site-footer .footer-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 15px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.25); /* Subtle dividing line */
+        font-size: 15px;
+    }
+    .site-footer .footer-nav a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+    }
+    .site-footer .footer-nav a:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+    .site-footer .footer-nav .separator {
+        color: #ffffff;
+        font-weight: normal;
+    }
+    .site-footer .footer-info {
+        text-align: center;
+        padding: 20px 20px 25px 20px;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+    .site-footer .footer-info .block-name {
+        font-weight: 700; /* Bold for the block name */
+    }
+    @media (max-width: 600px) {
+        .site-footer .footer-nav {
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<div class="main-content">
+    <div class="container">
+        
+        <!-- Top Header Banner -->
+        <div class="page-header">
+            <div class="header-icon-bg">
+                <i class="fas fa-hand-holding-hand"></i>
+            </div>
+            <h2>
+                <i class="fas fa-landmark me-2"></i>
+                Harishchandrapur-I Development Block
+            </h2>
+            <p class="fs-6">State & Central Government Welfare Schemes Directory</p>
+            <p class="small opacity-75" style="font-size: 0.85rem;">District: Malda | Government of West Bengal</p>
+        </div>
+
+        <!-- Breadcrumb -->
+        <div class="custom-breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a> 
+            <span class="mx-1 text-secondary">/</span> 
+            <span class="active">Government Schemes</span>
+        </div>
+
+        <!-- Main Directory Card -->
+        <div class="card directory-card">
+            <!-- Orange Card Header -->
+            <div class="card-header-orange">
+                <h4>
+                    <i class="fas fa-list-alt"></i> Schemes Directory
+                </h4>
+                <div class="search-container">
+                    <i class="fas fa-search text-white"></i>
+                    <input type="text" class="search-input" id="searchSchemes" placeholder="Search scheme name...">
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="table-responsive">
+                <table class="table table-bordered" id="schemesTable">
+                    <thead>
+                        <tr>
+                            <th width="80" class="text-center">Sl No.</th>
+                            <th>Name of the Scheme</th>
+                            <th>Scheme Type</th>
+                            <th>Department / Ministry</th>
+                            <th width="120" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">1</span></td>
+                            <td class="fw-bold">Annapurna Yojana</td>
+                            <td>State Government</td>
+                            <td>Women & Child Development</td>
+                            <td class="text-center">
+                                <a href="https://socialsecurity.wb.gov.in/Office/forget-password" target="_blank" class="btn-action btn-blue" title="Apply Online"><i class="fas fa-globe"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">2</span></td>
+                            <td class="fw-bold">Ayushman Bharat</td>
+                            <td>State Government</td>
+                            <td>Health & Family Welfare</td>
+                            <td class="text-center">
+                                <a href="https://beneficiary.nha.gov.in/" target="_blank" class="btn-action btn-blue" title="Apply Online"><i class="fas fa-globe"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">3</span></td>
+                            <td class="fw-bold">Krishak Bandhu</td>
+                            <td>State Government</td>
+                            <td>Agriculture Department</td>
+                            <td class="text-center">
+                                <a href="https://www.google.com/search?q=krishak+bandhu+pdf+form+2026&sca_esv=be024947bd5d2819&ei=ep55av6MDeeaseMP9pfD4Ao&oq=krishak+bandhu+pdf&gs_lp=Egxnd3Mtd2l6LXNlcnAiEmtyaXNoYWsgYmFuZGh1IHBkZioCCAMyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBhAAGBYYHjIGEAAYFhgeMgYQABgWGB4yBhAAGBYYHkjgJVDXBViADXAFeACQAQCYAWOgAWOqAQExuAEByAEA-AEBmAIFoAITwgIKEAAYRxjWBBiwA8ICDRAAGIAEGIoFGEMYsAPCAhcQLhjcBhi4BhjaBhjYAhjIAxiwA9gBAcICChAAGIAEGIoFGEPCAggQABiABBixA5gDAIgGAZAGEboGBggBEAEYGZIHATWgB8QUsgcAuAcAwgcFMC4zLjLIBw6ACAE&sclient=gws-wiz-serp" target="_blank" class="btn-action btn-green" title="Download Form"><i class="fas fa-download"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">4</span></td>
+                            <td class="fw-bold">Kanyashree Prakalpa</td>
+                            <td>State Government</td>
+                            <td>Women Development</td>
+                            <td class="text-center">
+                                <a href="https://wbkanyashree.gov.in/" target="_blank" class="btn-action btn-green" title="Download Form"><i class="fas fa-download"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">5</span></td>
+                            <td class="fw-bold">Pradhan Mantri Awas Yojana (PMAY-G)</td>
+                            <td>Central Government</td>
+                            <td>Rural Development</td>
+                            <td class="text-center">
+                                <a href="https://pmayg.nic.in/" target="_blank" class="btn-action btn-view" title="View Details"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">6</span></td>
+                            <td class="fw-bold">VB-RAM G (125 Days Work)</td>
+                            <td>Central Government</td>
+                            <td>Rural Development</td>
+                            <td class="text-center">
+                                <a href="https://vbgramg.dord.gov.in/vbgramg/home.aspx?ref=sprintally.com" target="_blank" class="btn-action btn-view" title="View Details"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">7</span></td>
+                            <td class="fw-bold">PM Kisan Samman Nidhi</td>
+                            <td>Central Government</td>
+                            <td>Agriculture & Farmers Welfare</td>
+                            <td class="text-center">
+                                <a href="https://pmkisan.gov.in/" target="_blank" class="btn-action btn-blue" title="Apply Online"><i class="fas fa-globe"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center"><span class="sl-badge">8</span></td>
+                            <td class="fw-bold">Jal Jeevan Mission</td>
+                            <td>Central Government</td>
+                            <td>Jal Shakti Ministry</td>
+                            <td class="text-center">
+                                   <a href="https://jaljeevanmission.gov.in/" target="_blank" class="btn-action btn-blue" title="Apply Online"><i class="fas fa-globe"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> <!-- End Main Content -->
+
+<!-- Custom Footer Implementation -->
+<footer class="site-footer">
+  
+    
+    <div class="footer-info">
+        <div>
+            <span class="block-name">Harishchandrapur-I Development Block</span> | Government of West Bengal
+        </div>
+        <div>
+            &copy; 2026 All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Simple Search Script to make the search bar functional -->
+<script>
+    document.getElementById("searchSchemes").addEventListener("keyup", function() {
+        let filter = this.value.toLowerCase();
+        let rows = document.querySelectorAll("#schemesTable tbody tr");
+        
+        rows.forEach(row => {
+            let text = row.textContent.toLowerCase();
+            row.style.display = text.includes(filter) ? "" : "none";
+        });
+    });
+</script>
+
+<!-- Bootstrap Script -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

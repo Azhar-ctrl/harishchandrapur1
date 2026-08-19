@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Harishchandrapur-I Dev. Block, Malda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- General Reset & Body Styling --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #fffaf5; /* Very subtle light orange/off-white background */
+            color: #333;
+            padding: 40px 20px;
+        }
+
+        /* --- Admin Container --- */
+        .admin-container {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 15px rgba(214, 81, 8, 0.15); /* Slight orange tinted shadow */
+        }
+
+        /* --- Header Styling --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #d65108; /* Orange border */
+            padding-bottom: 15px;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .emblem {
+            width: 45px;
+        }
+
+        h1 {
+            color: #d65108; /* Orange text */
+            font-size: 24px;
+            margin-bottom: 3px;
+        }
+        
+        .sub-heading {
+            color: #6c757d; 
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* --- Table Styling --- */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        thead {
+            background-color: #d65108; /* Orange Table Header */
+            color: #ffffff;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #f0e6df;
+            vertical-align: middle;
+        }
+
+        th {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        td {
+            font-size: 14px;
+            color: #495057;
+        }
+
+        tr:hover {
+            background-color: #fff4ec; /* Light orange hover effect */
+        }
+
+        /* Input fields inside the table */
+        .table-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .table-input:focus {
+            border-color: #d65108; /* Orange focus outline */
+        }
+
+        /* --- Buttons Styling --- */
+        .btn {
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: white;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .btn-add {
+            background-color: #d65108; /* Primary Orange */
+            padding: 10px 15px;
+            font-size: 14px;
+        }
+        .btn-add:hover { background-color: #b54306; }
+
+        .btn-save { background-color: #198754; } /* Keep semantic green for save */
+        .btn-save:hover { background-color: #157347; }
+
+        .btn-cancel { background-color: #6c757d; }
+        .btn-cancel:hover { background-color: #5c636a; }
+
+        .btn-delete { background-color: #dc3545; }
+        .btn-delete:hover { background-color: #bb2d3b; }
+        
+        .btn-reset { background-color: #e57e42; } /* Lighter Orange for PIN */
+        .btn-reset:hover { background-color: #cf682c; }
+
+        .btn-edit {
+            background-color: #ffc107; /* Warning Yellow for Edit */
+            color: #000;
+        }
+        .btn-edit:hover { background-color: #ffca2c; }
+
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: #d65108;
+            font-style: italic;
+        }
+
+        .password-field {
+            font-family: monospace;
+            background: #fdf5f0;
+            color: #d65108;
+            padding: 4px 8px;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            border: 1px solid #fae1d1;
+        }
+        
+        .actions-cell {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Footer Styling --- */
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #fae1d1;
+            text-align: center;
+        }
+        
+        /* --- Full-Width Orange Footer Styling --- */
+        .custom-footer {
+            background-color: #c85a06; /* Matches the solid orange background */
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            width: 100%;
+            margin-top: 50px; /* Provides spacing from the table above */
+            font-family: 'Arial', sans-serif;
+        }
+
+        .custom-footer p {
+            margin: 8px 0;
+            font-size: 15px; /* Adjust size to match image proportion */
+        }
+
+        .custom-footer p strong {
+            font-weight: bold;
+        }
+        .footer p {
+            color: #6c757d;
+            font-size: 13px;
+        }
+
+        .footer strong {
+            color: #d65108;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-title">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Emblem_of_India.svg" alt="Emblem" class="emblem">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <span class="sub-heading">Harishchandrapur-I Development Block, Malda</span>
+                </div>
+            </div>
+            <button id="addUserBtn" class="btn btn-add"><i class="fas fa-plus"></i> Add New User</button>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-wrapper">
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile Number</th>
+                        <th>Designation</th>
+                        <th>Secret PIN</th>
+                        <th style="min-width: 260px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be populated here via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Footer -->
+      <footer class="custom-footer">
+    <p><strong>Harishchandrapur-I Development Block</strong> | Government of West Bengal</p>
+    <p>&copy; 2026 All Rights Reserved.</p>
+</footer>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('tableBody');
+            let isAddingOrEditing = false; 
+            const API_URL = 'http://localhost:3000/api/users'; // Backend URL
+
+            // --- FETCH DATA FROM DATABASE ---
+            async function loadUsers() {
+                isAddingOrEditing = false; 
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">Loading...</td></tr>'; 
+
+                try {
+                    const response = await fetch(API_URL);
+                    const users = await response.json();
+                    
+                    tableBody.innerHTML = '';
+                    if (users.length === 0) {
+                        tableBody.innerHTML = `<tr id="emptyMessageRow"><td colspan="5" class="empty-message"><i class="fas fa-info-circle"></i> No registered users found.</td></tr>`;
+                        return;
+                    }
+
+                    users.forEach(userData => {
+                        const tr = document.createElement('tr');
+                        tr.id = `row-${userData.mobile}`; 
+                        
+                        const userDesignation = userData.designation || '<span style="color: #adb5bd;">N/A</span>';
+
+                        tr.innerHTML = `
+                            <td><strong>${userData.name}</strong></td>
+                            <td>${userData.mobile}</td>
+                            <td>${userDesignation}</td>
+                            <td><span class="password-field">${userData.pin}</span></td>
+                            <td class="actions-cell">
+                                <button class="btn btn-edit" onclick="editUser('${userData.mobile}', '${userData.name}', '${userData.designation}', '${userData.pin}')" title="Edit User">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn btn-reset" onclick="sendSavedPin('${userData.mobile}', '${userData.name}', '${userData.pin}')" title="Send Saved PIN">
+                                    <i class="fas fa-paper-plane"></i> Send PIN
+                                </button>
+                                <button class="btn btn-delete" onclick="deleteUser('${userData.mobile}')" title="Delete User">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
+                            </td>
+                        `;
+                        tableBody.appendChild(tr);
+                    });
+                } catch (error) {
+                    console.error("Error loading users:", error);
+                    tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red;">Failed to load database.</td></tr>`;
+                }
+            }
+
+            // --- ADD NEW USER UI ---
+            document.getElementById('addUserBtn').addEventListener('click', () => {
+                if (isAddingOrEditing) { alert("Please save or cancel first."); return; }
+                isAddingOrEditing = true;
+                const emptyMsg = document.getElementById('emptyMessageRow');
+                if (emptyMsg) emptyMsg.remove();
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td><input type="text" id="newName" class="table-input" placeholder="Full Name" required></td>
+                    <td><input type="tel" id="newMobile" class="table-input" pattern="[0-9]{10}" placeholder="10-digit Mobile" required></td>
+                    <td><input type="text" id="newDesignation" class="table-input" placeholder="Designation" required></td>
+                    <td><input type="text" id="newPin" class="table-input" placeholder="Create PIN" required></td>
+                    <td class="actions-cell">
+                        <button class="btn btn-save" onclick="saveNewUser()" title="Save"><i class="fas fa-save"></i> Save</button>
+                        <button class="btn btn-cancel" onclick="cancelAction()" title="Cancel"><i class="fas fa-times"></i> Cancel</button>
+                    </td>
+                `;
+                tableBody.insertBefore(tr, tableBody.firstChild);
+            });
+
+            // --- SAVE TO DATABASE ---
+            window.saveNewUser = async function() {
+                const name = document.getElementById('newName').value.trim();
+                const mobile = document.getElementById('newMobile').value.trim();
+                const designation = document.getElementById('newDesignation').value.trim();
+                const pin = document.getElementById('newPin').value.trim();
+
+                if (!name || !mobile || !designation || !pin) return alert("Fill all fields.");
+                if (mobile.length !== 10 || isNaN(mobile)) return alert("Enter valid 10-digit mobile.");
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, mobile, designation, pin })
+                });
+
+                if (response.ok) {
+                    alert("User added to database!");
+                    loadUsers();
+                } else {
+                    const data = await response.json();
+                    alert(data.error || "Error adding user.");
+                }
+            };
+
+            // --- EDIT UI ---
+            window.editUser = function(mobile, name, designation, pin) {
+                if (isAddingOrEditing) return alert("Please save or cancel first.");
+                isAddingOrEditing = true;
+                const tr = document.getElementById(`row-${mobile}`);
+
+                tr.innerHTML = `
+                    <td><input type="text" id="editName-${mobile}" class="table-input" value="${name}"></td>
+                    <td><input type="tel" id="editMobile-${mobile}" class="table-input" value="${mobile}"></td>
+                    <td><input type="text" id="editDesignation-${mobile}" class="table-input" value="${designation}"></td>
+                    <td><input type="text" id="editPin-${mobile}" class="table-input" value="${pin}"></td>
+                    <td class="actions-cell">
+                        <button class="btn btn-save" onclick="updateUser('${mobile}')"><i class="fas fa-save"></i> Update</button>
+                        <button class="btn btn-cancel" onclick="cancelAction()"><i class="fas fa-times"></i> Cancel</button>
+                    </td>
+                `;
+            };
+
+            // --- UPDATE DATABASE ---
+            window.updateUser = async function(oldMobile) {
+                const name = document.getElementById(`editName-${oldMobile}`).value.trim();
+                const mobile = document.getElementById(`editMobile-${oldMobile}`).value.trim();
+                const designation = document.getElementById(`editDesignation-${oldMobile}`).value.trim();
+                const pin = document.getElementById(`editPin-${oldMobile}`).value.trim();
+
+                await fetch(`${API_URL}/${oldMobile}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, mobile, designation, pin })
+                });
+                alert("Database updated!");
+                loadUsers(); 
+            };
+
+            // --- DELETE FROM DATABASE ---
+            window.deleteUser = async function(mobile) {
+                if (confirm(`Delete user ${mobile} from the database?`)) {
+                    await fetch(`${API_URL}/${mobile}`, { method: 'DELETE' });
+                    loadUsers(); 
+                }
+            };
+
+            // --- UI ACTIONS ---
+            window.cancelAction = () => loadUsers();
+            window.sendSavedPin = (mobile, name, pin) => {
+                if (confirm(`Send PIN to ${mobile}?`)) {
+                    alert(`[SIMULATION: SMS SENT]\n\nTo: ${mobile}\nMessage: "Hello ${name}, your PIN is: ${pin}"`);
+                }
+            };
+
+            loadUsers(); // Initial DB Load
+        });
+    </script>
+</body>
+</html>
